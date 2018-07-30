@@ -1,28 +1,27 @@
 import * as React from 'react';
 
 export interface IProps {
-  currentTask: string;
   openTasks: any[];
+  task: string;
 }
 
-function TaskList({currentTask, openTasks}: IProps) {
-  const taskList = openTasks.map((task) => {
-    return <li key={task.id}>{task.title}</li>
+function TaskList({task, openTasks}: IProps) {
+  const taskList = openTasks.map((t) => {
+    return <li key={t.id}>{t.title}</li>
   });
   let id: number = 0;
   function _onTaskChange(e:any):void {
     e.preventDefault();
-    currentTask = e.target.value;
+    task = e.target.value;
   }
 
   function _onTaskSubmit() {
-    
     openTasks.push({
       id,
-      title: currentTask,
+      title: task,
     });
-    currentTask = '';
-    id ++
+    task = '';
+    id ++;
   }
 
   return (
