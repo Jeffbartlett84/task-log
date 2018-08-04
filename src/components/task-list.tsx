@@ -2,34 +2,50 @@ import * as React from 'react';
 
 export interface IProps {
   openTasks: any[];
-  task: string;
+  addNewTask: (t: string) => void;
+  clearTaskInput: () => void;
+  onTaskChange: (e: object) => void;
+  currentTask: string;
 }
 
-function TaskList({task, openTasks}: IProps) {
+const TaskList = ({
+  openTasks, 
+  addNewTask,
+  clearTaskInput, 
+  onTaskChange,
+  currentTask
+}: IProps) => {
   const taskList = openTasks.map((t) => {
     return <li key={t.id}>{t.title}</li>
   });
-  let id: number = 0;
-  function _onTaskChange(e:any):void {
-    e.preventDefault();
-    task = e.target.value;
+
+  const handleTaskInput = (e:any):void => {
+    onTaskChange(e);
   }
 
-  function _onTaskSubmit() {
-    openTasks.push({
-      id,
-      title: task,
-    });
-    task = '';
-    id ++;
+  const handleAddNewTask = () => {
+    if(currentTask) {
+      addNewTask(currentTask);
+    }
+  }
+
+  const handleClearTaskInput = () => {
+    if(currentTask) {
+      clearTaskInput();
+    }
   }
 
   return (
     <div className="task-list-cmp">
-      <input placeholder="Enter a task" onChange={_onTaskChange}/>
+      <input 
+        type="text" 
+        value={currentTask} 
+        placeholder="Enter a task" 
+        onChange={handleTaskInput}
+      />
       <br/>
-      <button onClick={_onTaskSubmit}>+</button>
-      <button>x</button>
+      <button onClick={handleAddNewTask}>+</button>
+      <button onClick={handleClearTaskInput}>x</button>
       <ul>{taskList}</ul>
     </div>
   );
