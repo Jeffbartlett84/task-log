@@ -1,8 +1,10 @@
 import * as React from 'react';
+import SingleTask from './single-task';
 
 export interface IProps {
   openTasks: any[];
   addNewTask: (t: string) => void;
+  setTask: (t: any) => void;
   clearTaskInput: () => void;
   onTaskChange: (e: object) => void;
   currentTask: string;
@@ -11,12 +13,20 @@ export interface IProps {
 const TaskList = ({
   openTasks, 
   addNewTask,
+  setTask,
   clearTaskInput, 
   onTaskChange,
-  currentTask
+  currentTask,
 }: IProps) => {
   const taskList = openTasks.map((t) => {
-    return <li key={t.id}>{t.title}</li>
+    return (
+      <li key={t.id}>
+        <SingleTask
+          setTask={setTask}
+          task={t}
+        />
+      </li>
+    )
   });
 
   const handleTaskInput = (e:any):void => {

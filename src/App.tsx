@@ -1,12 +1,23 @@
+import * as moment from 'moment';
 import * as React from 'react';
 import './App.css';
 import TaskList from './components/task-list'
+
 
 let id = 0;
 
 class App extends React.Component {
   public state = {
-    openTasks: [{id, title: 'finish this app'}],
+    openTasks: [{
+      completed: false,
+      completedDate: '',
+      id: 0,
+      important: true,
+      isEditing: false,
+      lastUpdated: moment().format('MM/DD/YYYY'),
+      notes: 'react seems pretty cool',
+      title: 'finish the task component',
+    }],
     task: '',
   }
 
@@ -16,6 +27,7 @@ class App extends React.Component {
         <TaskList 
           openTasks={this.state.openTasks} 
           addNewTask={this.addNewTask}
+          setTask={this.setTask}
           clearTaskInput={this.clearTaskInput} 
           onTaskChange={this.onTaskChange} 
           currentTask={this.state.task}
@@ -39,13 +51,41 @@ class App extends React.Component {
     let openTasksCopy;
     openTasksCopy = openTasks.slice(0);
     openTasksCopy.push({
+      completed: false,
+      completedDate: '',
       id,
+      important: false,
+      isEditing: false,
+      lastUpdated: moment().format('MM/DD/YYYY'),
+      notes: '',
       title: newTaskTitle,
     });
 
     this.setState({openTasks: openTasksCopy});
     this.clearTaskInput();
   }
+
+  private setTask = (task) => {
+    const { openTasks } = this.state;
+    let openTasksCopy;
+    openTasksCopy = openTasks.slice(0);
+    const newTaskIndex = this.findTask(task.id);
+    openTasksCopy[newTaskIndex] = task;
+    this.setState({ openTasks: openTasksCopy });    
+  }
+
+  private findTask = (taskId: number): number => {
+    const { openTasks } = this.state;
+    let openTasksCopy;
+    openTasksCopy = openTasks.slice(0);
+    const index = openTasksCopy.forEach((t, i) => {
+      if (t.id === taskId) {
+        return i;
+      }
+    });
+    return index;
+  }
+
 }
 
 export default App;
