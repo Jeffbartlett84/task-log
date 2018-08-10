@@ -22,21 +22,47 @@ const SingleTask = ({
   setTask,
   task
 }: IProps) => {
-  
-  const toggleEdit = () => {
+  // const newTaskValue = task;
+
+  const editedObject = Object.assign({}, task);
+
+  const editTask = () => {
     const newTask = Object.assign({}, task);
-    newTask.isEditing = !task.isEditing;
+    newTask.isEditing = true;
     setTask(newTask);
-  } 
+  }
+  const handleTaskInput = (e: any): void => {
+    onTaskChange(e);
+  }
+  const saveTask = () => {
+    editedObject.isEditing = false;
+    setTask(editedObject);
+  }
+
+  const onTaskChange = (e) => {
+    // e.preventDefault();
+    // const newTask = Object.assign(editedObject, task);
+    const name = e.target.name;
+    const newValue = e.target.value;
+    editedObject[name] = newValue;
+  }
+
   return (
     <div className="single-task-cmp">
-      <button onClick={toggleEdit}>
-        <h3 className="taskTitle">{task.title}</h3>
-        <p>{task.lastUpdated}</p>
-        {task.isEditing &&
-          <div>{task.notes}</div>
-        }
-      </button>
+      
+      {!task.isEditing &&
+        <button onClick={editTask}>  
+          <h3 className="taskTitle">{task.title}</h3>
+          <p>{task.lastUpdated}</p>
+        </button>
+      }
+      {task.isEditing &&
+        <div>
+          <input value={editedObject.title} onChange={handleTaskInput} name="title"/>
+          <input value={editedObject.notes} onChange={handleTaskInput} name="notes"/>
+          <button onClick={saveTask}>save me</button>
+        </div>
+      }
     </div>
   );
 }

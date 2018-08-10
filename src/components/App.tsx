@@ -1,25 +1,23 @@
 import * as moment from 'moment';
 import * as React from 'react';
-import './App.css';
-import TaskList from './components/task-list'
-
+import TaskList from '../components/task-list';
 
 let id = 0;
 
 class App extends React.Component {
-  public state = {
-    openTasks: [{
-      completed: false,
-      completedDate: '',
-      id: 0,
-      important: true,
-      isEditing: false,
-      lastUpdated: moment().format('MM/DD/YYYY'),
-      notes: 'react seems pretty cool',
-      title: 'finish the task component',
-    }],
-    task: '',
-  }
+  // public state = {
+  //   openTasks: [{
+  //     completed: false,
+  //     completedDate: '',
+  //     id: 0,
+  //     important: true,
+  //     isEditing: false,
+  //     lastUpdated: moment().format('MM/DD/YYYY'),
+  //     notes: 'react seems pretty cool',
+  //     title: 'finish the task component',
+  //   }],
+  //   task: '',
+  // }
 
   public render() {
     return (
@@ -78,14 +76,10 @@ class App extends React.Component {
     const { openTasks } = this.state;
     let openTasksCopy;
     openTasksCopy = openTasks.slice(0);
-    const index = openTasksCopy.forEach((t, i) => {
-      if (t.id === taskId) {
-        return i;
-      }
-    });
-    return index;
+    return openTasks.indexOf(openTasksCopy.find((task)=> {
+     return task.id === taskId;
+    }));
   }
-
 }
 
 export default App;
