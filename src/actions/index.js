@@ -1,7 +1,7 @@
-let nextTodoId = 0
-export const addTodo = text => ({
-    type: 'ADD_TODO',
-    id: nextTodoId++,
+let nextTaskId = 0
+export const addTask = text => ({
+    type: 'ADD_TASK',
+    id: nextTaskId++,
     text,
     completed: false,
     completedDate: '',
@@ -11,7 +11,7 @@ export const addTodo = text => ({
     notes: ''
 })
 
-export const toggleTodo = id => ({
-    type: 'TOGGLE_TODO',
+export const toggleTask = id => ({
+    type: 'TOGGLE_TASK',
     id
 })

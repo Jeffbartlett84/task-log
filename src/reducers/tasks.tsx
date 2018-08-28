@@ -1,6 +1,6 @@
-const todos = (state = [], action) => {
+const tasks = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TODO':
+        case 'ADD_TASK':
             return [
                 ...state,
                 {
@@ -14,15 +14,15 @@ const todos = (state = [], action) => {
                     text: action.text
                 }
             ]
-        case 'TOGGLE_TODO':
-            return state.map((todo: any) =>
-                (todo.id === action.id)
-                    ? { ...todo, completed: !todo.completed }
-                    : todo
+        case 'TOGGLE_TASK':
+            return state.map((task: any) =>
+                (task.id === action.id)
+                    ? { ...task, completed: !task.completed }
+                    : task
             )
         default:
             return state
     }
 }
 
-export default todos
+export default tasks
