@@ -1,27 +1,27 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import { addTask } from '../actions'
+// import * as React from 'react'
+// import { connect } from 'react-redux'
+// import { addTask } from '../actions'
 
-const AddTask = ({ dispatch }) => {
-    let input;
+// const AddTask = ({ dispatch }) => {
+//     let input;
 
-    return (
-        <div>
-            <form onSubmit={e => {
-                e.preventDefault()
-                if (!input.value.trim()) {
-                    return
-                }
-                dispatch(addTask(input.value))
-                input.value = ''
-            }}>
-                <input ref={node => input = node} />
-                <button type="submit">
-                    Add Todo
-        </button>
-            </form>
-        </div>
-    );
-}
+//     return (
+//         <div>
+//             <form onSubmit={e => {
+//                 e.preventDefault()
+//                 if (!input.value.trim()) {
+//                     return
+//                 }
+//                 dispatch(addTask(input.value))
+//                 input.value = ''
+//             }}>
+//                 <input ref={node => input = node} />
+//                 <button type="submit">
+//                     Add Todo
+//         </button>
+//             </form>
+//         </div>
+//     );
+// }
 
-export default connect()(AddTask)
+// export default connect()(AddTask)

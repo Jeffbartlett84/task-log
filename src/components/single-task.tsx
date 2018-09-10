@@ -13,13 +13,11 @@ export interface ITask {
 }
 
 export interface IProps {
-  setTask: (t: ITask) => void;
   task: ITask;
 }
 
 
 const SingleTask = ({
-  setTask,
   task
 }: IProps) => {
   // const newTaskValue = task;
@@ -29,14 +27,12 @@ const SingleTask = ({
   const editTask = () => {
     const newTask = Object.assign({}, task);
     newTask.isEditing = true;
-    setTask(newTask);
   }
   const handleTaskInput = (e: any): void => {
     onTaskChange(e);
   }
   const saveTask = () => {
     editedObject.isEditing = false;
-    setTask(editedObject);
   }
 
   const onTaskChange = (e) => {

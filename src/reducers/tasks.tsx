@@ -1,7 +1,10 @@
-import * as moment from 'moment';
+]// import * as moment from 'moment';
 
 const tasks = (state = {
-    allTasks: []
+    allTasks: [],
+    important: false,
+    notes: '',
+    text: ''
 }, action) => {
     switch (action.type) {
         case 'ADD_TASK':
