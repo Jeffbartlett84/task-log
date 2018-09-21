@@ -1,7 +1,7 @@
-]// import * as moment from 'moment';
+import * as moment from 'moment';
 
 const tasks = (state = {
-    allTasks: [],
+    allTasks: [{title: 'something', id: moment.valueOf()}],
     important: false,
     notes: '',
     text: ''

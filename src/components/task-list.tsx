@@ -25,7 +25,7 @@ const TaskList = ({
     <div className="task-list-cmp">
       <input 
         type="text" 
-        value={currentTask} 
+        defaultValue={currentTask} 
         placeholder="Enter a task" 
         // onChange={handleTaskInput}
       />

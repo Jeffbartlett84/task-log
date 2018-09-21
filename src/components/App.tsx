@@ -1,6 +1,15 @@
 // import * as moment from 'moment';
 import * as React from 'react';
+import { connect } from 'react-redux';
 import TaskList from './task-list';
+// import { bindActionCreators } from 'redux';
+// import * as actionCreators from './actionCreators';
+
+const mapStateToProps = (state) => {
+  return {
+    allTasks: state.tasks.allTasks
+  }
+}
 
 // let id = 0;
 
@@ -37,7 +46,7 @@ class App extends React.Component {
           // clearTaskInput={this.clearTaskInput} 
           // onTaskChange={this.onTaskChange} 
           currentTask={'stuff'}
-          openTasks={[{title: 'something'}, {title: 'stuff'}]} 
+          openTasks={this.props.allTasks} 
       />
       <h1>oh hai mark</h1>
 
@@ -93,4 +102,4 @@ class App extends React.Component {
   // }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
