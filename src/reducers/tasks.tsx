@@ -1,18 +1,15 @@
-import * as moment from 'moment';
+// import uuid3 from 'uuid';
+// import * as moment from 'moment';
 
-const tasks = (state = {
-    allTasks: [{title: 'something', id: moment.valueOf()}],
-    important: false,
-    notes: '',
-    text: ''
+const taskList = (state = {
+    allTasks: [{title: 'create add action', id: '123'}],
+    currentTask: '',
 }, action) => {
     switch (action.type) {
         case 'ADD_TASK':
             state = {
                 ...state,
-                important: false,
-                notes: action.notes,
-                text: action.text
+                allTasks: [...state.allTasks, action.task]
             };
             break;
         case 'TOGGLE_TASK':
@@ -22,4 +19,30 @@ const tasks = (state = {
     }
 }
 
-export default tasks
+// const singleTask = (state = {
+//     completed: false,
+//     completedDate: '',
+//     id: uuid3(),
+//     important: false,
+//     isEditing: false,
+//     lastUpdated: moment('MM/DD/YYYY'),
+//     notes: '',
+//     text:'',
+// }, action) => {
+//     switch (action.type) {
+//         case 'ADD_TASK':
+//             state = {
+//                 ...state,
+//                 important: false,
+//                 notes: action.notes,
+//                 text: action.text
+//             };
+//             break;
+//         case 'TOGGLE_TASK':
+           
+//         default:
+//             return state
+//     }
+// }
+
+export default taskList

@@ -1,52 +1,26 @@
-// import * as moment from 'moment';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import TaskList from './task-list';
 // import { bindActionCreators } from 'redux';
 // import * as actionCreators from './actionCreators';
+export interface IProps {
+  allTasks: any;
+}
 
 const mapStateToProps = (state) => {
   return {
-    allTasks: state.tasks.allTasks
+    allTasks: state.tasks.allTasks,
   }
 }
 
-// let id = 0;
-
-class App extends React.Component {
-  // public state = {
-  //   openTasks: [{
-  //     completed: false,
-  //     completedDate: '',
-  //     id: 0,
-  //     important: true,
-  //     isEditing: false,
-  //     lastUpdated: moment().format('MM/DD/YYYY'),
-  //     notes: 'react seems pretty cool',
-  //     title: 'finish the task component',
-  //   }],
-  //   task: '',
-  // }
-
-          // addNewTask={this.addNewTask}
-          // setTask={this.setTask}
-          // clearTaskInput={this.clearTaskInput} 
-          // onTaskChange={this.onTaskChange} 
-          // currentTask={this.state.task}
-          // openTasks={this.state.openTasks} 
-          // <TaskList />
-
+class App extends React.Component<IProps> {
 
   public render() {
     return (
       <div className="App">
       <TaskList 
-          // addNewTask={this.addNewTask}
-          // setTask={this.setTask}
-          // clearTaskInput={this.clearTaskInput} 
-          // onTaskChange={this.onTaskChange} 
-          currentTask={'stuff'}
-          openTasks={this.props.allTasks} 
+          // newTask={'stuff'}
+          openTasks={this.props.allTasks}
       />
       <h1>oh hai mark</h1>
 

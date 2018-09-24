@@ -18,7 +18,7 @@ export interface IProps {
 
 
 const SingleTask = ({
-  task
+  task,
 }: IProps) => {
   // const newTaskValue = task;
 
